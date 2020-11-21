@@ -22,6 +22,7 @@ This little project is an exercise to simulate an in memory DBMS database, suppo
 
 Transaction operations are also supported (create, commit and rollback transaction) in conformity with read committed level, as defined by this [Wikipedia page](https://en.m.wikipedia.org/wiki/Isolation_(database_systems)#Read_committed)
 
+Important note: Don't forget to look for the Ohana
 
 <!-- GETTING STARTED -->
 ## Getting Started
@@ -39,7 +40,7 @@ You'll need to get Python3 to run this code, you can find the appropritate insta
 ```sh
 git clone https://github.com/wallabyqc/memdb.git
 ```
-2. Profit
+2. Profit !
 
 
 <!-- USAGE EXAMPLES -->
@@ -83,7 +84,7 @@ Distributed under the Apache License. See `LICENSE` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@wallabyqc](https://twitter.com/wallabyqc) - martin.gagneqc@gmail.com
+Martin Gagne - [@wallabyqc](https://twitter.com/wallabyqc) - martin.gagneqc@gmail.com
 
 Project Link: [https://github.com/wallabyqc/memdb](https://github.com/wallabyqc/memdb)
 
