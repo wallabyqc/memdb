@@ -20,7 +20,7 @@ def main():
 
     myDb.delete("example") 
 
-    myDb.get("example") 
+    myDb.get("example")
 
     myDb.delete("example") 
 
