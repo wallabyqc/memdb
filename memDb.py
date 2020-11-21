@@ -1,6 +1,6 @@
 ########################################################################################################################################
 #
-# Class memDb, python exercise to simulate a in memory DBMS database system with transaction/commit/rollback feature
+# Class memDb, python exercise to simulate a in memory DBMS database system with transaction/commit/rollback features
 #
 # Author : Martin Gagne
 #
@@ -19,6 +19,7 @@ class memDb:
     dataDict = dict()
     transactionMaster = dict()
 
+    # Method to insert data into the database
     def put(key, value, transactionId=None):
         try:
             if transactionId != None:
@@ -32,11 +33,13 @@ class memDb:
 
             else:
                 memDb.dataDict[key] = [value, datetime.now()]
-            return
+
+            return None
 
         except Exception as error:
             print("An error occured while affecting the data record: " + str(error))
 
+    # Method to retrieve data from the database
     def get(key, transactionId=None):
         try:
             if transactionId != None:
@@ -52,6 +55,7 @@ class memDb:
         except Exception as error:
             print("An error occured while retrieving the data record: " + str(error))
 
+    # Method to delete data from the database
     def delete(key, transactionId=None):
         try:
             if transactionId != None:
@@ -63,10 +67,13 @@ class memDb:
                     raise Exception("This transaction doesn't exist")
 
             del memDb.dataDict[key]
-            return
+
+            return None
+
         except Exception as error:
             print("An error occured while deleting the data record: " + str(error))
 
+    # Method to initialize a new transaction
     def createTransaction(transactionId):
         try:
             if transactionId in memDb.transactionMaster:
@@ -74,10 +81,11 @@ class memDb:
             memDb.transactionMaster[transactionId] = datetime.now()
 
             return None
-            
+
         except Exception as error:
             print("An error occured while creating the transaction: " + str(error))
 
+    # Method to rollback a transaction
     def rollbackTransaction(transactionId):
 
         transactionHeader = "trx" + str(transactionId) + ";"
@@ -102,6 +110,7 @@ class memDb:
         except Exception as error:
             print("An error occured while rolling back the transaction: " + str(error))
 
+    # Method to commit a transaction
     def commitTransaction(transactionId):
 
         transactionHeader = "trx" + str(transactionId) + ";"

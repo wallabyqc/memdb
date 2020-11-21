@@ -1,6 +1,6 @@
 ########################################################################################################################################
 #
-# testRoutine.py - A simple python routine to tests cases of memDb class
+# testRoutine.py - A simple python routine to perform tests cases of memDb class
 #
 # Author : Martin Gagne
 #
@@ -10,7 +10,7 @@
 
 from memDb import memDb
 
-
+#Main function
 def main():
     myDb = memDb
 
@@ -88,6 +88,6 @@ def main():
     myDb.get("b")# returns null 
 
 
-
+#Invoke main on execution
 if __name__ == "__main__":
     main()
