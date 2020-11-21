@@ -46,7 +46,10 @@ class memDb:
                 if transactionId in memDb.transactionMaster:
                     transactionHeader = "trx" + str(transactionId) + ";"
                     transactionKey = transactionHeader + str(key)
-                    return memDb.dataDict[transactionKey][0]
+                    if transactionKey in memDb.dataDict:
+                        return memDb.dataDict[transactionKey][0]
+                    else:
+                        return memDb.dataDict[key][0]
                 else:
                     raise Exception("This transaction doesn't exist")
 
