@@ -25,7 +25,7 @@ class memDb:
             if transactionId != None:
 
                 if transactionId in memDb.transactionMaster:
-                    transactionHeader = "trx" + str(transactionId) + ";"
+                    transactionHeader = "trx_" + str(transactionId) + ";"
                     transactionKey = transactionHeader + str(key)
                     memDb.dataDict[transactionKey] = [value, datetime.now()]
                 else:
@@ -44,7 +44,7 @@ class memDb:
         try:
             if transactionId != None:
                 if transactionId in memDb.transactionMaster:
-                    transactionHeader = "trx" + str(transactionId) + ";"
+                    transactionHeader = "trx_" + str(transactionId) + ";"
                     transactionKey = transactionHeader + str(key)
                     if transactionKey in memDb.dataDict:
                         return memDb.dataDict[transactionKey][0]
@@ -63,7 +63,7 @@ class memDb:
         try:
             if transactionId != None:
                 if transactionId in memDb.transactionMaster:
-                    transactionHeader = "trx" + str(transactionId) + ";"
+                    transactionHeader = "trx_" + str(transactionId) + ";"
                     transactionKey = transactionHeader + str(key)
                     del memDb.dataDict[transactionKey]
                 else:
@@ -91,7 +91,7 @@ class memDb:
     # Method to rollback a transaction
     def rollbackTransaction(transactionId):
 
-        transactionHeader = "trx" + str(transactionId) + ";"
+        transactionHeader = "trx_" + str(transactionId) + ";"
 
         try:
 
@@ -116,7 +116,7 @@ class memDb:
     # Method to commit a transaction
     def commitTransaction(transactionId):
 
-        transactionHeader = "trx" + str(transactionId) + ";"
+        transactionHeader = "trx_" + str(transactionId) + ";"
 
         try:
             if transactionId in memDb.transactionMaster:
