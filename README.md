@@ -40,16 +40,12 @@ To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-```sh
-npm install npm@latest -g
-```
+You'll need to get Python3 to run this code, you can find the appropritate installer for your operating system using link below :
+* https://www.python.org/download/releases/3.0/
 
 ### Installation
 
-1. Install Python3 from https://www.python.org/download/releases/3.0/
-2. Clone the repo
+1. Clone the repo
 ```sh
 git clone https://github.com/wallabyqc/memdb.git
 ```
@@ -60,9 +56,10 @@ git clone https://github.com/wallabyqc/memdb.git
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
+Simply run the test routine using below syntax :
+```sh
+python3 testRoutine.py
+```
 
 
 
