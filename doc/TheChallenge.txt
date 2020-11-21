@@ -1,0 +1,169 @@
+Simple Database Challenge
+
+ 
+
+This is a simple database problem. You'll implement an in-memory database as a key value store. The interface for this database follows. You may modify it to match the idiomatic way to program in the language you’ve selected for this exercise. 
+
+ 
+
+Guidelines 
+
+·         Your solution does not need to persist data between restarts. 
+
+ 
+
+API Spec 
+
+ 
+
+The Basic API 
+
+Your API should accept the following: 
+
+·        void put(String key, String value) 
+
+o   Set the variable “key” to the provided “value” 
+
+o   Throws an exception or returns an error on failure 
+
+·        void put(String key, String value, String transactionId) 
+
+o   Set the variable “key” to the provided “value” within the transaction with ID “transactionId” 
+
+o   Throws an exception or returns an error on failure 
+
+·        String get(String key) 
+
+o   Returns the value associated with “key” 
+
+o   Throws an exception or returns an error on failure 
+
+·        String get(String key, String transactionId) 
+
+o   Returns the value associated with “key” within the transaction with ID “transactionId” 
+
+o   Throws an exception or returns an error on failure 
+
+·        void delete(String key) 
+
+o   Remove the value associated with “key” 
+
+o   Throws an exception or returns an error on failure 
+
+·        void delete(String key, String transactionId) 
+
+o   Remove the value associated with “key” within the transaction with ID “transactionId” 
+
+o   Throws an exception or returns an error on failure 
+
+ 
+
+Here is an example request sequence without transactions: 
+
+ 
+
+myDb.put(“example”, “foo”) 
+
+myDb.get(“example”) // returns “foo” 
+
+myDb.delete(“example”) 
+
+myDb.get(“example”) // returns null 
+
+myDb.delete(“example”) 
+
+Transactions 
+
+In addition to the above requests, your program should also support basic transactions by also implementing these operations: 
+
+·        void createTransaction(String transactionId) 
+
+o   Starts a transaction with the specified ID. The ID must not be an active transaction ID. 
+
+o   Throws an exception or returns an error on failure 
+
+·        void rollbackTransaction(String transactionId) 
+
+o   Aborts the transaction and invalidates the transaction with the specified transaction ID 
+
+o   Throws an exception or returns an error on failure 
+
+·        void commitTransaction(String transactionId) 
+
+o   Commits the transaction and invalidates the ID. If there is a conflict (meaning the transaction attempts to change a value for a key that was mutated after the transaction was created), the transaction always fails with an exception or an error is returned. 
+
+ 
+
+Transaction should be isolated at the read committed level, as defined by this Wikipedia page. Any put, delete, get operation that is issued without a transaction ID should commit immediately. 
+
+ 
+
+Here is an example request sequence: 
+
+ 
+
+myDb.createTransaction(“abc”); 
+
+myDb.put(“a”, “foo”, “abc”); 
+
+myDb.get(“a”, “abc”); // returns “foo” 
+
+myDb.get(“a”); // returns null 
+
+ 
+
+myDb.createTransaction(“xyz”); 
+
+myDb.put(“a”, “bar”, “xyz”); 
+
+myDb.get(“a”, “xyz”); // returns “bar” 
+
+myDb.commitTransaction(“xyz”); 
+
+myDb.get(“a”); // returns “bar” 
+
+ 
+
+myDb.commitTransaction(“abc”); // failure 
+
+ 
+
+myDb.get(“a”); // returns “bar” 
+
+ 
+
+myDb.createTransaction(“abc”); 
+
+myDb.put(“a”, “foo”, “abc”); 
+
+myDb.get(“a”); // returns “bar” 
+
+myDb.rollbackTransaction(“abc”); 
+
+myDb.put(“a”, “foo”, “abc”); // failure 
+
+myDb.get(“a”); // returns “bar” 
+
+ 
+
+myDb.createTransaction(“def”); 
+
+myDb.put(“b”, “foo”, “def”); 
+
+myDb.get(“a”, “def”); // returns “bar” 
+
+myDb.get(“b”, “def”); // returns “foo” 
+
+myDb.rollbackTransaction(“def”); 
+
+myDb.get(“b”); // returns null 
+
+ 
+
+Performance Considerations 
+
+·        All of the put, get, and delete operations should have an expected worst-case runtime of O(log N) or better, where N is the total number of variables stored in the database. 
+
+·        The vast majority of transactions will only update a small number of variables. Accordingly, your solution should be efficient about how much memory each transaction uses. 
+
+ 
